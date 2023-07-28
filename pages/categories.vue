@@ -139,9 +139,9 @@
                 </td>
               </tr>
   
-              <tr class="bg-white">
+              <tr v-for="category in categories" :key="category.id" class="bg-white">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                  Categoria 2
+                  {{  category.name }}
                 </td>
   
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-4">
@@ -179,10 +179,18 @@
       AppFormInput,
       AppFormLabel,
     },
+
+    async asyncData({ store }) {
+        return {
+            
+            categories: await store.dispatch('categories/getCategories')
+        };
+    },
   
     data() {
       return {};
     },
+
   
     methods: {},
   };
