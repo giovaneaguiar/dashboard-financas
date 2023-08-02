@@ -154,6 +154,7 @@
                   <a
                     href="#"
                     class="text-red-600 hover:text-red-900"
+                    @click.stop.prevent="deleteCategory(category.id)"
                   >Excluir
                   </a>
                 </td>
@@ -192,6 +193,10 @@
     },
 
   
-    methods: {},
+    methods: {
+      async deleteCategory(id) {
+        await this.$axios.$delete(`categories/${id}`);
+      },
+    },
   };
   </script>
