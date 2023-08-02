@@ -10,10 +10,10 @@
       <div>
         <div class="flex items-center space-x-3">
           <div>
-            <AppFormInput/>
+            <AppFormInput v-model="name" @keyup.enter="addCategory"/>
           </div>
 
-          <AppButton >
+          <AppButton @click="addCategory">
             Adicionar
           </AppButton>
         </div>
@@ -100,7 +100,21 @@ export default {
 
   methods: {
     async deleteCategory(id) {
-      await this.$axios.$delete(`categories/${id}`);
+      await this.$axios.$delete(`categories/${id}`).then(() => {
+        const idx = this.categories.findIndex(o => o.id === id);
+        this.categories.splice(idx, 1);
+      });
+    },
+
+    async addCategory() {
+      if (!this.name) return;
+      const data = {
+        name: this.name,
+      };
+      await this.$axios.$post('categories', data).then((response) => {
+        this.categories.push(response);
+      });
+      this.name = ''; // Limpar o campo após adicionar a categoria
     },
 
     toUpdate(category) {
@@ -114,13 +128,25 @@ export default {
     },
 
     async updateCategory(category) {
-      const data = {
-        name: category.name,
-      };
-      await this.$axios.$patch(`categories/${category.id}`, data);
-      category.is_updating = false;
-      this.editingCategory = null; // Ao salvar a edição, limpar a variável editingCategory
-    },
+  const data = {
+    name: category.name,
+  };
+
+  try {
+    await this.$axios.$patch(`categories/${category.id}`, data);
+    category.is_updating = false;
+
+    // Atualizar o nome da categoria na lista local após a requisição
+    const index = this.categories.findIndex((item) => item.id === category.id);
+    if (index !== -1) {
+      this.categories[index].name = category.name;
+    }
+
+    this.editingCategory = null; // Ao salvar a edição, limpar a variável editingCategory
+  } catch (error) {
+    console.error('Erro ao atualizar categoria:', error);
+  }
+},
 
   },
 };
