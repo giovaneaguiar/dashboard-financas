@@ -44,7 +44,7 @@ import AppButton from '~/components/Ui/AppButton';
 import AppFormInput from '~/components/Ui/AppFormInput';
 import AppFormLabel from '~/components/Ui/AppFormLabel';
 import AppFormSelect from '~/components/Ui/AppFormSelect';
-import TransactionAdd from '~/components/Transaction/TransactionAdd'
+
 
 export default {
     name: 'TransactionAdd',
@@ -54,7 +54,6 @@ export default {
     AppFormInput,
     AppFormLabel,
     AppFormSelect,
-    TransactionAdd
   },
 
     data(){
