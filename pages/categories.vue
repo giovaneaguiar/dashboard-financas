@@ -83,19 +83,25 @@ export default {
     AppFormLabel,
   },
 
-  async asyncData({ store }) {
-    return {
-      categories: await store.dispatch('categories/getCategories').then(response =>
-        response.map(o => ({ ...o, is_updating: false }))
-      ),
-      editingCategory: null, // Nova variável para guardar a categoria em edição
-    };
-  },
+  //async asyncData({ store }) {
+   // return {
+     // categories: await store.dispatch('categories/getCategories').then(response =>
+      //  response.map(o => ({ ...o, is_updating: false }))
+    //  ),
+     // editingCategory: null, // Nova variável para guardar a categoria em edição
+   // };
+  //},
 
   data() {
     return {
-      name: '', // Variável para armazenar o nome da nova categoria
+      name: '', 
+      categories: [],
+      editingCategory: null,
     };
+  },
+
+  async mounted() {
+    await this.getCategories();
   },
 
   methods: {
@@ -147,6 +153,15 @@ export default {
     console.error('Erro ao atualizar categoria:', error);
   }
 },
+
+    async getCategories() {
+      try {
+        const response = await this.$axios.$get('categories');
+        this.categories = response.map(o => ({ ...o, is_updating: false }));
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    },
 
   },
 };
