@@ -141,7 +141,7 @@
         >
           <div class="mb-1">
             <div class="font-bold text-sm">
-              {{ index }}
+              {{ formatDate(index) }}
             </div>
           </div>
 
@@ -193,6 +193,7 @@ import AppFormLabel from '~/components/Ui/AppFormLabel';
 import AppFormSelect from '~/components/Ui/AppFormSelect';
 import TransactionAdd from '~/components/Transaction/TransactionAdd';
 import { groupBy, orderBy } from 'lodash';
+import dayjs from 'dayjs';
 
 export default {
   name: 'IndexPage',
@@ -218,7 +219,10 @@ export default {
   computed: {
     transactionGrouped(){
       return groupBy(orderBy(this.transactions, 'date', 'desc'), 'date');
-    }
+    },
+    formatDate() {
+      return (date) => date ? dayjs(date).format('DD/MM/YYYY') : '';
+    },
   },
   methods: {
     async getTransactions(){
