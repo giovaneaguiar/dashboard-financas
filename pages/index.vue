@@ -12,6 +12,7 @@
 
     <TransactionAdd
       v-if="isAdding"
+      @after-add="afterAdd"
       @cancel="isAdding = false"
     />
 
@@ -232,7 +233,12 @@ export default {
           } catch (error) {
             console.error('Error get transactions:', error);
           }
-        }
+        },
+
+        afterAdd(transaction){
+          this.transactions.push(transaction);
+
+        },
       },
 
     };

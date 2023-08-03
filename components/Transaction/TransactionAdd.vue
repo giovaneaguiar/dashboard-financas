@@ -77,7 +77,13 @@ export default {
     methods: {
         async addTransaction(){
 
-        await this.$axios.$post('transactions', this.form);
+        await this.$axios.$post('transactions', this.form).then((response) => {
+          this.$emit('after-add', {
+            ...response,
+            category: this.categories.find(o => o.id == this.form.categoryId)
+          })
+
+        });
         },
 
         async getCategories(){
