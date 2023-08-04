@@ -16,17 +16,9 @@
       @cancel="isAdding = false"
     />
 
-    <div class="mt-6 pb-6 flex items-center space-x-4 border-b border-gray-300">
-      <div>
-        <AppFormLabel>Descrição</AppFormLabel>
-        <AppFormInput />
-      </div>
-
-      <div>
-        <AppFormLabel>Categoria</AppFormLabel>
-        <AppFormSelect :options="[{ name: 'Licença de softwares', id: 1 }]" />
-      </div>
-    </div>
+    <TransactionFilter 
+    @filter="onFilter"
+    />
 
     <div class="mt-4">
       <div class="space-y-8">
@@ -61,6 +53,7 @@ import AppFormLabel from '~/components/Ui/AppFormLabel';
 import AppFormSelect from '~/components/Ui/AppFormSelect';
 import TransactionAdd from '~/components/Transaction/TransactionAdd';
 import Transaction from '~/components/Transaction/Transaction';
+import TransactionFilter from '~/components/Transaction/TransactionFilter.vue';
 import { groupBy, orderBy } from 'lodash';
 import dayjs from 'dayjs';
 
@@ -73,7 +66,8 @@ export default {
     AppFormLabel,
     AppFormSelect,
     TransactionAdd,
-    Transaction
+    Transaction,
+    TransactionFilter
   },
 
   data() {
@@ -116,9 +110,21 @@ export default {
           this.transactions.splice(idx, 1, transaction);
 
        },
-      },
 
-    };
+      async onFilter(filter) {
+        try {
+          const response = await this.$axios.$get('transactions?_expand=category', {
+          params: filter,
+        });
+          this.transactions = response;
+        } catch (error) {
+          console.error('Error filtering transactions:', error);
+        }
+    },
+  },
+    
+
+  };
 
   
 </script>
