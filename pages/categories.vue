@@ -83,15 +83,6 @@ export default {
     AppFormLabel,
   },
 
-  //async asyncData({ store }) {
-   // return {
-     // categories: await store.dispatch('categories/getCategories').then(response =>
-      //  response.map(o => ({ ...o, is_updating: false }))
-    //  ),
-     // editingCategory: null, // Nova variável para guardar a categoria em edição
-   // };
-  //},
-
   data() {
     return {
       name: '', 

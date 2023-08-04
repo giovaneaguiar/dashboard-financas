@@ -65,7 +65,7 @@
             console.error('Error fetching categories:', error);
           }
         },
-            onFilterDebounce: debounce(function () {
+          onFilterDebounce: debounce(function () { // Delay no filtro
         this.onFilter();
         }, 300),
 

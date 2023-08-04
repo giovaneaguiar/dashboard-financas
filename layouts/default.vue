@@ -6,7 +6,7 @@
             <div class="relative flex items-center justify-between h-16">
               <div class="flex-1 flex items-center items-stretch justify-start">
                 <div class="flex-shrink-0 flex items-center">
-                  <img class="block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
+                  <img class="block h-8 w-auto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Nuxt_logo.svg/2560px-Nuxt_logo.svg.png" alt="Workflow">
                 </div>
   
                 <div class="hidden sm:block sm:ml-6">
@@ -34,7 +34,7 @@
                 <div class="ml-3 relative">
                   <div>
                     <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                      <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                      <img class="h-8 w-8 rounded-full" src="https://media.licdn.com/dms/image/D4D03AQE2tbSUoatiMw/profile-displayphoto-shrink_400_400/0/1688494374551?e=1696464000&v=beta&t=iCprOfYnAEEkyqivu3wH5LYiyWPRUIV_sGrdYFp9vVc" alt="">
                     </button>
                   </div>
                 </div>

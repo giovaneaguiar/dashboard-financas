@@ -70,7 +70,7 @@
     },
 
     mounted() {
-    this.getTransactions();
+    this.getTransactions(); // Chamar a função para buscar as transações
     this.getCategories(); // Chamar a função para buscar as categorias
     },
   
@@ -81,33 +81,33 @@
     },
   
     methods: {
-        async getTransactions() {
-            try {
+      async getTransactions() {
+          try {
           const response = await this.$axios.$get('transactions?_expand=category');
           this.transactions = response;
           } catch (error) {
             console.error('Error get transactions:', error);
           }
-    },
+      },
 
-    afterAdd(transaction) {
-      this.transactions.push(transaction);
-    },
+      afterAdd(transaction) {
+        this.transactions.push(transaction);
+      },
 
-    async getCategories() {
-      try {
-        const response = await this.$axios.$get('categories');
-        this.categories = response;
-      } catch (error) {
-        console.error('Erro ao buscar categorias:', error);
-      }
-    },
+      async getCategories() {
+        try {
+          const response = await this.$axios.$get('categories');
+          this.categories = response;
+        } catch (error) {
+          console.error('Erro ao buscar categorias:', error);
+        }
+      },
 
     // Método para lidar com o evento "after-update" emitido pelo componente TransactionEdit
-    afterUpdate(updatedTransaction) {
-      // Encontrar a transação atualizada na lista de transações e substituir seus dados
-            this.$emit('update', updatedTransaction);
-        },
-     },
+      afterUpdate(updatedTransaction) {
+        // Encontrar a transação atualizada na lista de transações e substituir seus dados
+        this.$emit('update', updatedTransaction);
+      },
+    },
   };
   </script>
