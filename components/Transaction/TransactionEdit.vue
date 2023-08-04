@@ -98,12 +98,12 @@
           .then((response) => {
             // Se a atualização foi bem-sucedida, emitimos um evento para notificar o componente pai
             // sobre a atualização e também atualizamos a transação local com os novos valores
-            this.$emit('after-update', response);
-            this.localTransaction = { ...response };
+            this.$emit('update', {
+            ...response,
+            category: this.categories.find(o => o.id == this.localTransaction.categoryId)
           })
-          .catch((error) => {
-            console.error('Erro ao atualizar a transação:', error);
-          });
+          this.onCancel();
+        });
       },
   
       onCancel() {

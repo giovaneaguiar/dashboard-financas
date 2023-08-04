@@ -34,7 +34,7 @@
         v-if="isUpdating"
         :transaction="transaction"
         :categories="categories"
-        @after-update="afterUpdate"
+        @update="afterUpdate"
         @cancel="isUpdating = false"
         
         />
@@ -104,15 +104,7 @@
     // Método para lidar com o evento "after-update" emitido pelo componente TransactionEdit
     afterUpdate(updatedTransaction) {
       // Encontrar a transação atualizada na lista de transações e substituir seus dados
-      const index = this.transactions.findIndex(
-        (t) => t.id === updatedTransaction.id
-      );
-      if (index !== -1) {
-        this.transactions[index] = updatedTransaction;
-      }
-
-      // Fechar o formulário de edição
-      this.isUpdating = false;
+            this.$emit('update', updatedTransaction);
         },
      },
   };

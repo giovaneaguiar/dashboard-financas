@@ -150,7 +150,7 @@
             <Transaction  v-for="transaction in group"
               :key="transaction.id"
               :transaction="transaction"
-              @transaction-updated="onTransactionUpdated"
+              @update="onTransactionUpdated"
               :categories="categories"
               />
           </div>
@@ -216,12 +216,10 @@ export default {
 
         },
 
-        onTransactionUpdated(updatedTransaction) {
+          onTransactionUpdated(transaction) {
           // Encontrar a transação atualizada na lista de transações e substituir seus dados
-          const index = this.transactions.findIndex((t) => t.id === updatedTransaction.id);
-          if (index !== -1) {
-          this.transactions[index] = updatedTransaction
-          }
+          const idx = this.transactions.findIndex(o => o.id === transaction.id);
+          this.transactions.splice(idx, 1, transaction);
 
        },
       },
